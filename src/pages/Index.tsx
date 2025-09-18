@@ -50,40 +50,44 @@ const Index = () => {
 
   // Navigation component for screens that need it
   const NavigationBar = () => (
-    <div className="fixed bottom-6 left-1/2 transform -translate-x-1/2 z-50">
-      <div className="bg-card/90 backdrop-blur-lg border border-border/50 rounded-2xl p-2 shadow-[var(--shadow-floating)]">
-        <div className="flex space-x-2">
+    <div className="fixed bottom-0 left-0 right-0 z-50 bg-card/95 backdrop-blur-lg border-t border-border/50">
+      <div className="flex justify-center px-6 py-3">
+        <div className="flex space-x-8">
           <Button
             onClick={handleBackToWelcome}
             variant="ghost"
             size="sm"
-            className={`p-3 rounded-xl ${currentScreen === 'welcome' ? 'bg-primary/10 text-primary' : ''}`}
+            className={`flex flex-col items-center gap-1 p-2 h-auto ${currentScreen === 'welcome' ? 'text-primary' : 'text-muted-foreground'}`}
           >
             <Home className="w-5 h-5" />
+            <span className="text-xs">Home</span>
           </Button>
           <Button
             onClick={() => setCurrentScreen('new-conversation')}
             variant="ghost"
             size="sm"
-            className={`p-3 rounded-xl ${currentScreen === 'new-conversation' || currentScreen === 'chat' ? 'bg-primary/10 text-primary' : ''}`}
+            className={`flex flex-col items-center gap-1 p-2 h-auto ${currentScreen === 'new-conversation' || currentScreen === 'chat' ? 'text-primary' : 'text-muted-foreground'}`}
           >
             <MessageSquare className="w-5 h-5" />
+            <span className="text-xs">Chat</span>
           </Button>
           <Button
             onClick={() => setCurrentScreen('progress')}
             variant="ghost"
             size="sm"
-            className={`p-3 rounded-xl ${currentScreen === 'progress' ? 'bg-primary/10 text-primary' : ''}`}
+            className={`flex flex-col items-center gap-1 p-2 h-auto ${currentScreen === 'progress' ? 'text-primary' : 'text-muted-foreground'}`}
           >
             <BarChart3 className="w-5 h-5" />
+            <span className="text-xs">Progress</span>
           </Button>
           <Button
             onClick={() => setCurrentScreen('premium')}
             variant="ghost"
             size="sm"
-            className={`p-3 rounded-xl ${currentScreen === 'premium' ? 'bg-accent/10 text-accent' : ''}`}
+            className={`flex flex-col items-center gap-1 p-2 h-auto ${currentScreen === 'premium' ? 'text-accent' : 'text-muted-foreground'}`}
           >
             <Crown className="w-5 h-5" />
+            <span className="text-xs">Premium</span>
           </Button>
         </div>
       </div>
@@ -125,8 +129,10 @@ const Index = () => {
   };
 
   return (
-    <div className="relative">
-      {renderScreen()}
+    <div className="relative min-h-screen">
+      <div className={`${currentScreen !== 'welcome' && currentScreen !== 'chat' ? 'pb-20' : ''}`}>
+        {renderScreen()}
+      </div>
       {currentScreen !== 'welcome' && currentScreen !== 'chat' && <NavigationBar />}
     </div>
   );
